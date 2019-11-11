@@ -1,17 +1,26 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Vehicles/>
+    <button @click="click">Button</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Vehicles from './components/Vehicles.vue'
+import axios from 'axios'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Vehicles
+  },
+  methods: {
+    click () {
+      axios
+        .get('http://localhost:3001/vehicle/all')
+        .then(response => (console.log(JSON.parse(response.data))))
+    }
   }
 }
 </script>
